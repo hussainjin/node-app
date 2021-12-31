@@ -29,7 +29,8 @@ pipeline {
             steps {
             withSonarQubeEnv('sonar'){
             sh "${scannerHome}/bin/sonar-scanner"
-            sh "-Dsonar.login=a66e4fd589e46829213d78af57044c9e404ff9c5"
+            sh "-Dsonar.login=admin"
+            sh "-Dsonar.password=0000"
            }
          }
         }
