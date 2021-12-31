@@ -50,8 +50,8 @@ pipeline {
             steps{
                    withCredentials([string(credentialsId: 'docker--HUB', variable: 'docker--HUB')])
                 {                                   
-                    sh "docker login -u hussainjin -p ${docker--HUB}"
-                    sh "docker push hussainjin/java2:${DOCKER_TAG}"
+                    sh  "docker login -u hussainjin -p ${docker--HUB}"
+                    sh  "docker push hussainjin/java2:${DOCKER_TAG}"
                 }
             }
         }
