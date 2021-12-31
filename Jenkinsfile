@@ -17,12 +17,12 @@ pipeline {
                 sh'mvn clean install'
             }
         }
-       stage('Sonarqube') {
+        stage('Sonarqube') {
          environment {
          def scannerHome = tool 'sonar';
-     }
-     steps {
-     withSonarQubeEnv('sonar') {
+            }
+        steps {
+        withSonarQubeEnv('sonar') {
         sh "${scannerHome}/bin/sonar-scanner"
       }
      }
