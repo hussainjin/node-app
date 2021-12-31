@@ -43,15 +43,15 @@ pipeline {
         stage('Build Docker Image'){
             steps{
                 sh 'docker images -q -f dangling=true | xargs --no-run-if-empty docker rmi'
-                sh "docker build . -t hussainjin/java2:${DOCKER_TAG}"
+                sh "docker build . -t anilkumblepuli/java2:${DOCKER_TAG}"
             }
         }
         stage('DockerHub Push'){
             steps{
                    withCredentials([string(credentialsId: 'dockerpass2', variable: 'dockerpass2')])
                 {                                   
-                    sh  "docker login -u hussainjin -p ${dockerpass2}"
-                    sh  "docker push hussainjin/java2:${DOCKER_TAG}"
+                    sh  "docker login -u anilkumblepuli -p ${dockerpass2}"
+                    sh  "docker push anilkumblepuli/java2:${DOCKER_TAG}"
                 }
             }
         }
