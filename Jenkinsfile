@@ -16,17 +16,17 @@ pipeline {
             steps{
                 sh'mvn clean install'
             }
-        }
-        stage('Sonarqube') {
+         }
+         stage('Sonarqube') {
          environment {
          def scannerHome = tool 'sonar';
             }
         steps {
-        withSonarQubeEnv('sonar') {
+        withSonarQubeEnv('sonar'){
         sh "${scannerHome}/bin/sonar-scanner"
+        }
+       }
       }
-     }
-    }
         //stage('deploy throuh ansible')
           //    {
          //steps{
