@@ -20,8 +20,10 @@ pipeline {
            stage('Sonarqube') {
            environment {
            def scannerHome = tool 'sonar';
-               withSonarQubeEnv("sonar") {
-           sh "${tool("sonar")}/bin/sonar-scanner -Dsonar.host.url=http://3.142.143.159/:9000 -Dsonar.login=a66e4fd589e46829213d78af57044c9e404ff9c5"
+                withSonarQubeEnv("sonar") {
+                  sh "${tool("sonar")}/bin/sonar-scanner"
+                  sh "-Dsonar.host.url=http://3.142.143.159/:9000"
+                  sh "-Dsonar.login=a66e4fd589e46829213d78af57044c9e404ff9c5"
                }
               }
 //             steps {
