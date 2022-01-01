@@ -17,23 +17,16 @@ pipeline {
                 sh'mvn clean install'
             }
          }
-           stage('Sonarqube') {
-           environment {
-           def scannerHome = tool 'sonar';
-//                 withSonarQubeEnv("sonar") {
-//                   sh "${tool("sonar")}/bin/sonar-scanner"
-//                   sh "-Dsonar.host.url=http://3.142.143.159/:9000"
-//                   sh "-Dsonar.login=a66e4fd589e46829213d78af57044c9e404ff9c5"
-//                }
-              }
-            steps {
-            withSonarQubeEnv('sonar'){
-            sh "${scannerHome}/bin/sonar-scanner"
-//             sh "-Dsonar.login=admin"
-//             sh "-Dsonar.password=0000"
-           }
-         }
-        }
+//            stage('Sonarqube') {
+//            environment {
+//            def scannerHome = tool 'sonar';
+//               }
+//             steps {
+//             withSonarQubeEnv('sonar'){
+//             sh "${scannerHome}/bin/sonar-scanner"
+//            }
+//          }
+//         }
         stage('Artifact upload') {
       steps {
        nexusPublisher nexusInstanceId: 'nexusid', nexusRepositoryId: 'pipeline', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '/var/lib/jenkins/workspace/pipeline-sonar-docker-k8s/target/*.war']], mavenCoordinate: [artifactId: 'vprofile', groupId: 'com.wakaleo.gameoflife', packaging: 'war', version: '$BUILD_NUMBER']]]      
