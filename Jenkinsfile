@@ -34,6 +34,11 @@ pipeline {
            }
          }
         }
+        stage('Artifact upload') {
+      steps {
+       nexusPublisher nexusInstanceId: 'nexusid', nexusRepositoryId: 'pipeline', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '/var/lib/jenkins/workspace/pipeline-sonar-docker-k8s/target/*.war']], mavenCoordinate: [artifactId: 'vprofile', groupId: 'com.wakaleo.gameoflife', packaging: 'war', version: '$BUILD_NUMBER']]]      
+      }
+     }
         //stage('deploy throuh ansible')
           //    {
          //steps{
