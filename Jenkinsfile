@@ -17,16 +17,16 @@ pipeline {
                 sh'mvn clean install'
             }
          }
-//            stage('Sonarqube') {
-//            environment {
-//            def scannerHome = tool 'sonar';
-//               }
-//             steps {
-//             withSonarQubeEnv('sonar'){
-//             sh "${scannerHome}/bin/sonar-scanner"
-//            }
-//          }
-//         }
+           stage('Sonarqube') {
+           environment {
+           def scannerHome = tool 'sonar';
+              }
+            steps {
+            withSonarQubeEnv('sonar'){
+            sh "${scannerHome}/bin/sonar-scanner"
+           }
+         }
+        }
         stage('Artifact upload') {
       steps {
 //        nexusPublisher nexusInstanceId: 'nexusid', nexusRepositoryId: 'nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '/var/lib/jenkins/workspace/pline-sonar-docker-k8s/target/vprofile-v1.war']], mavenCoordinate: [artifactId: 'vprofile', groupId: 'com.wakaleo.gameoflife', packaging: 'war', version: '$BUILD_NUMBER']]]      
