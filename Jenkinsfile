@@ -29,7 +29,8 @@ pipeline {
 //         }
         stage('Artifact upload') {
       steps {
-       nexusPublisher nexusInstanceId: 'nexusid', nexusRepositoryId: 'nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '/var/lib/jenkins/workspace/pline-sonar-docker-k8s/target/vprofile-v1.war']], mavenCoordinate: [artifactId: 'vprofile', groupId: 'com.wakaleo.gameoflife', packaging: 'war', version: '$BUILD_NUMBER']]]      
+//        nexusPublisher nexusInstanceId: 'nexusid', nexusRepositoryId: 'nexus-repo', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '/var/lib/jenkins/workspace/pline-sonar-docker-k8s/target/vprofile-v1.war']], mavenCoordinate: [artifactId: 'vprofile', groupId: 'com.wakaleo.gameoflife', packaging: 'war', version: '$BUILD_NUMBER']]]      
+            nexusArtifactUploader artifacts: [[artifactId: 'vprofile', classifier: '', file: '/var/lib/jenkins/workspace/pline-sonar-nexus-docker-k8s/target/vprofile-v1.war', type: 'war']], credentialsId: 'nexus-id', groupId: 'com.visualpathit', nexusUrl: '3.137.184.140:8081/repository/myrepo1/', nexusVersion: 'nexus3', protocol: 'http', repository: 'myrepo1', version: 'v1'
       }
      }
         //stage('deploy throuh ansible')
