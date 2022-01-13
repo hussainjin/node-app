@@ -70,9 +70,9 @@ pipeline {
                     script{
                         try{
                             
-                            sh "ssh ubuntu@18.119.0.241 kubectl apply -f ."
+                            sh "sudo ssh ubuntu@18.119.0.241 kubectl apply -f ."
                         }catch(error){
-                            sh "ssh ubuntu@18.119.0.241 kubectl create -f ."
+                            sh "sudo ssh ubuntu@18.119.0.241 kubectl create -f ."
                             
                         }
                     }
