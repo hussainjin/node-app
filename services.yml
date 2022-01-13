@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-   name: vproapp-servic6
+   name: vproapp-servic7
 spec:
    ports:
-   - port: 30001
-     nodePort: 30001
+   - port: 30002
+     nodePort: 30002
      targetPort: newport1
      protocol: TCP
    selector:
